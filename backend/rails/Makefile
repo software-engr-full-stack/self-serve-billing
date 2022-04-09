@@ -1,3 +1,7 @@
+# TODO:
+#   1. Refactor JWT encode and decode
+#   2. Turn this Makefile into tests
+
 sign-up:
 	curl --header "Content-Type: application/json" \
 			 --request POST \
