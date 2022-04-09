@@ -38,7 +38,7 @@ describe 'the sign up process', type: :request do
   end
 end
 
-describe 'current user', type: :request do
+describe 'verification (can get data using header + token)', type: :request do
   let(:email)    { 'user@example.com' }
   let(:name)     { 'user' }
   let(:password) { 'password' }
@@ -48,7 +48,7 @@ describe 'current user', type: :request do
 
     token = json['jwt']
 
-    get api_v1_current_user_path, headers: {
+    get api_v1_verify_path, headers: {
       'Content-Type' => 'application/json',
       'Authorization' => "Bearer #{token}"
     }

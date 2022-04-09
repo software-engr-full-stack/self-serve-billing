@@ -1,40 +1,41 @@
 class ApplicationController < ActionController::API
   before_action :authorized
 
-  def jwt_key
-    Rails.application.credentials.jwt_key
+  JWTKey = Rails.application.credentials.jwt_key
+  private_constant :JWTKey
+
+  def encode_token(payload)
+    JWT.encode(payload, JWTKey)
   end
 
-  def issue_token(user)
-    JWT.encode({ user_id: user.id }, jwt_key, 'HS256')
+  def auth_header
+    # { Authorization: 'Bearer <token>' }
+    request.headers['Authorization']
   end
 
   def decoded_token
-    JWT.decode(token, jwt_key, true, { algorithm: 'HS256' })
-  rescue JWT::DecodeError
-    [{ error: 'Invalid Token' }]
+    return if !auth_header
+
+    token = auth_header.split(/\s+/).last
+    begin
+      JWT.decode(token, JWTKey, true, algorithm: 'HS256')
+    rescue JWT::DecodeError
+      nil
+    end
+  end
+
+  def logged_in_user
+    return if !decoded_token
+
+    user_id = decoded_token[0]['user_id']
+    @user = User.find_by(id: user_id)
+  end
+
+  def logged_in?
+    !!logged_in_user
   end
 
   def authorized
     render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
-  end
-
-  def token
-    header = request.headers['Authorization']
-    return if !header
-
-    header.split(/\s+/).last
-  end
-
-  def user_id
-    decoded_token.first['user_id']
-  end
-
-  def current_user
-    @user ||= User.find_by(id: user_id)
-  end
-
-  def logged_in?
-    !!current_user
   end
 end
