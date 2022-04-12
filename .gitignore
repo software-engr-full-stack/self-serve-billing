@@ -142,29 +142,29 @@ sample-ci/
 #   git config --global core.excludesfile '~/.gitignore_global'
 
 # Ignore bundler config.
-/backend/rails/.bundle
+.bundle
 
 # Ignore the default SQLite database.
-/backend/rails/db/*.sqlite3
-/backend/rails/db/*.sqlite3-*
+db/*.sqlite3
+db/*.sqlite3-*
 
 # Ignore all logfiles and tempfiles.
-/backend/rails/log/*
-/backend/rails/tmp/*
-!/backend/rails/log/.keep
-!/backend/rails/tmp/.keep
+log/*
+tmp/*
+!log/.keep
+!tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-/backend/rails/tmp/pids/*
-!/backend/rails/tmp/pids/
-!/backend/rails/tmp/pids/.keep
+tmp/pids/*
+!tmp/pids/
+!tmp/pids/.keep
 
 # Ignore uploaded files in development.
-/backend/rails/storage/*
-!/backend/rails/storage/.keep
-/backend/rails/tmp/storage/*
-!/backend/rails/tmp/storage/
-!/backend/rails/tmp/storage/.keep
+storage/*
+!storage/.keep
+tmp/storage/*
+!tmp/storage/
+!tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-/backend/rails/config/master.key
+config/master.key
