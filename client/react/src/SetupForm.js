@@ -1,6 +1,3 @@
-// customer@example.com
-// 3782 822463 10005
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CardElement } from '@stripe/react-stripe-js';
