@@ -10,7 +10,7 @@ Client: React
 
 2. `cd` into clone repo
 
-3. Create a file called `server/sinatra/.env`. The contents look like this. Replace the keys, secrets, etc. with your own values for those fields:
+3. Create a file called `server/sinatra/.env`. The contents should look like the example below. Replace the keys, secrets, etc. with your own values for those fields:
   ```
     STRIPE_PUBLISHABLE_KEY=REPLACE-WITH-YOUR-STRIPE-PUBLISHABLE-KEY
     STRIPE_SECRET_KEY=REPLACE-WITH-YOUR-STRIPE-PUBLISHABLE-KEY
@@ -32,7 +32,7 @@ Client: React
     If you don't want the React dev env to open a browser:
     `( cd client/react && BROWSER=none npm start )`
 
-6. Optional: Run the webhook. You need to install the `stripe` CLI.
+6. Optional: Run the webhook. You need to install the `stripe` CLI. This will run in the foreground.
 
     `stripe listen --forward-to localhost:4242/webhook`
 
@@ -46,8 +46,8 @@ In the "Please enter account details" page, when you enter an email address and 
 
 customer@example.com
 
-Test credit card number
+Test credit card number:
 
 3782 822463 10005
 
-More test credit card numbers here: https://stripe.com/docs/testing?numbers-or-method-or-token=card-numbers#visa
+More test credit card numbers here: https://stripe.com/docs/testing#cards
