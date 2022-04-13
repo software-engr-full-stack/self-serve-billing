@@ -7,8 +7,6 @@ require_relative './config_helper'
 require_relative './lib'
 require_relative './test_data'
 
-# Copy the .env.example in the root into a .env file in this folder
-
 Dotenv.load
 ConfigHelper.check_env!
 # For sample support and debugging, not required for production:
@@ -49,9 +47,6 @@ post '/create-payment-intent' do
   payload = JSON.parse request.body.read
 
   payment_method = payload['payment_method']
-
-  # email = payload['email']
-  # amount = payload['amount']
 
   customer = payload['customer']
   product = payload['product']
@@ -134,8 +129,6 @@ post '/create-setup-intent' do
   setup_intent = Stripe::SetupIntent.create(
     customer: customer_obj['id']
   )
-
-  # setup_intent.to_json
 
   {
     setup_intent:,
