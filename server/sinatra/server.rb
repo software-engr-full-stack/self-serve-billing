@@ -124,10 +124,10 @@ post '/create-setup-intent' do
   customer_obj = find_customer_by_email email
 
   if customer_obj.nil?
-    customer_obj = Stripe::Customer.create(customer.data)
+    customer_obj = Stripe::Customer.create(payload)
 
     wait_until_present do
-      find_customer_by_email customer.email
+      find_customer_by_email email
     end
   end
 
